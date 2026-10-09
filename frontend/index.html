@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elbe Rent – Car rental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="logo" href="/">Elbe&nbsp;Rent</a>
+      <span class="topbar-note">Car rental in Hamburg, Berlin and Munich</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Find a car for your trip</h1>
+      <p class="hero-sub">Pick a city and your dates. You'll see every available car with the full price for your rental period.</p>
+
+      <form id="search-form" class="search" novalidate>
+        <label class="field">
+          <span>Pick-up location</span>
+          <select id="location" required>
+            <option value="Hamburg">Hamburg</option>
+            <option value="Berlin">Berlin</option>
+            <option value="Munich">Munich</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Pick-up date</span>
+          <input type="date" id="from" required>
+        </label>
+        <label class="field">
+          <span>Return date</span>
+          <input type="date" id="to" required>
+        </label>
+        <label class="field">
+          <span>Car type</span>
+          <select id="category">
+            <option value="">All types</option>
+            <option>Mini</option>
+            <option>Compact</option>
+            <option>Sedan</option>
+            <option>Estate</option>
+            <option>SUV</option>
+            <option>Electric</option>
+            <option>Van</option>
+          </select>
+        </label>
+        <button type="submit" id="search-btn">Search cars</button>
+      </form>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <p id="status" class="status" role="status" aria-live="polite">Choose your city and dates, then select Search cars.</p>
+    <ol id="results" class="results"></ol>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">Capstone project demo. Cars and prices are examples.</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
