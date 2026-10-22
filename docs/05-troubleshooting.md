@@ -37,3 +37,13 @@ Problems I hit while building the project, and how I fixed them.
 
 **Cause:** the test address still contained the placeholder `your-invoke-url`.
 **Fix:** use the real Invoke URL from the API's overview page.
+
+## Website shows the old version after an upload
+
+**Cause:** CloudFront caches the files.
+**Fix:** CloudFront → **Invalidations → Create invalidation** with `/*`.
+
+## Old S3 website address stops working
+
+**Cause:** expected after the clean-up; static website hosting is off and the bucket is private.
+**Fix:** always use the CloudFront URL.

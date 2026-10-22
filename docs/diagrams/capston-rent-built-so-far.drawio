@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="built" name="What is built">
+    <mxGraphModel dx="1300" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1240" pageHeight="780" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;Capston Rent – what is built so far (MVP)&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Capstone project · Ahmad Navid Tahir&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="520" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="cloud" value="AWS Cloud" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fontSize=13;strokeColor=#232F3E;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="300" y="90" width="900" height="650" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeg" value="Edge Locations (global)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fontSize=13;strokeColor=#d6b656;dashed=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="330" y="125" width="280" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="region" value="Region: us-east-1 (N. Virginia)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fontSize=13;strokeColor=#147EBA;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="285" width="840" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" value="Customer Browser&lt;br&gt;&lt;font style='font-size:10px'&gt;Capston Rent website&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="30" y="470" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="cf" value="Amazon CloudFront&lt;br&gt;&lt;font style='font-size:10px'&gt;HTTPS, cache&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="360" y="165" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="Amazon S3 – private bucket&lt;br&gt;&lt;font style='font-size:10px'&gt;index.html, style.css, app.js + car photos&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="360" y="330" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="api" value="API Gateway (HTTP API)&lt;br&gt;&lt;font style='font-size:10px'&gt;GET /api/vehicles · CORS&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=12;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="360" y="470" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lambda" value="Lambda&lt;br&gt;VehicleSearchFunction&lt;br&gt;&lt;font style='font-size:10px'&gt;checks input, calculates price&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=12;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="640" y="465" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ddb" value="Amazon DynamoDB&lt;br&gt;&lt;font style='font-size:10px'&gt;Fleet table · 10 cars&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="920" y="470" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="iam" value="AWS IAM role&lt;br&gt;&lt;font style='font-size:10px'&gt;DynamoDB read + write logs&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=12;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="640" y="615" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cw" value="Amazon CloudWatch&lt;br&gt;&lt;font style='font-size:10px'&gt;Lambda logs&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=12;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="920" y="615" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="done" value="&lt;b&gt;Achieved&lt;/b&gt;&lt;br&gt;✔ Website live over HTTPS&lt;br&gt;✔ Private S3 bucket (OAC)&lt;br&gt;✔ Search from DynamoDB with total price&lt;br&gt;✔ CORS: only the website may call the API&lt;br&gt;✔ Least-privilege IAM, logs in CloudWatch" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;align=left;spacingLeft=14;fillColor=#FFFFFF;strokeColor=#82b366;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="315" width="490" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="① open website (HTTPS)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#333333;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="browser" target="cf">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" value="② files + photos (OAC)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#333333;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cf" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="③ search" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="browser" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="④ invoke" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="lambda">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="⑤ Query" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#333333;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="lambda" target="ddb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="permissions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#333333;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="iam" target="lambda">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="logs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;strokeColor=#333333;exitX=0.85;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="lambda" target="cw">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="827" y="580" />
+              <mxPoint x="1030" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

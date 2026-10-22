@@ -1,28 +1,28 @@
 # 01 – Architecture
 
-## Current architecture (MVP)
+## Current architecture
 
 ```mermaid
 flowchart LR
-    B[Customer browser] -->|load website + photos| S3[(Amazon S3)]
+    B[Customer browser] -->|HTTPS| CF[CloudFront]
+    CF -->|OAC| S3[(S3 private bucket)]
+    B -->|sign up / log in| COG[Cognito]
     B -->|GET /api/vehicles| API[API Gateway]
     API -->|invoke| L[Lambda]
     L -->|Query| DB[(DynamoDB)]
 ```
 
-The website runs directly on the S3 website endpoint. The browser calls API Gateway directly; because S3 and API Gateway have different addresses, API Gateway is configured with **CORS**.
+- **CloudFront** delivers the website over HTTPS. The S3 bucket is private; only CloudFront can read it through **Origin Access Control (OAC)**.
+- **Cognito** handles sign-up (with email code), login and logout.
+- The browser calls **API Gateway** directly. CORS allows only the CloudFront URL.
 
-## Planned MVP architecture (with CloudFront)
+Diagram file: [diagrams/capston-rent-built-so-far.drawio](diagrams/capston-rent-built-so-far.drawio)
 
-![MVP flow](images/architecture-mvp-flow.png)
-
-With CloudFront, the browser only talks to one address over HTTPS. CloudFront serves the website from a private S3 bucket and forwards `/api/*` to API Gateway.
-
-Detailed diagram: ![Phase 1](images/architecture-phase1.png)
+Target architecture for later phases: ![Target](images/architecture-target.png)
 
 ## Step-by-step flow
 
-1. The customer opens the website. The browser loads `index.html`, `style.css` and `app.js` from S3.
+1. The customer opens the website. CloudFront delivers `index.html`, `style.css`, `app.js` and `auth.js` from the private S3 bucket.
 2. The customer picks a city and dates and clicks **Search cars**.
 3. `app.js` sends `GET /api/vehicles?location=Hamburg&from=2026-11-01&to=2026-11-05` to API Gateway.
 4. API Gateway starts the Lambda function `VehicleSearchFunction`.

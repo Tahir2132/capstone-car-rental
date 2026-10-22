@@ -10,8 +10,7 @@ Overview of all resources: [infrastructure/aws-resources.md](../infrastructure/a
 2. Upload `index.html`, `style.css` and `app.js` to the top level of the bucket.
 3. Create a folder `images` and upload the car photos, named after the vehicle ID (`HH-001.jpg`, `HH-002.jpg` …).
 4. **Properties → Static website hosting → Enable**, index document `index.html`.
-5. **Permissions → Bucket policy**: allow read access only from my own IP address (for testing).
-   Policy: [infrastructure/bucket-policy.json](../infrastructure/bucket-policy.json)
+5. **Permissions → Bucket policy**: for the first tests, allow read access only from my own IP address. (Replaced by CloudFront in Step 7.)
 
 ![S3 bucket](images/01-s3-bucket.png)
 
@@ -98,6 +97,44 @@ Open the S3 website URL, press **Ctrl+F5**, search for Hamburg.
 
 ![Result](images/06-website-result.png)
 
-## Step 7 – Next: CloudFront
+## Step 7 – CloudFront: HTTPS and a private bucket
 
-Put CloudFront in front of S3 and API Gateway for HTTPS, a private bucket (OAC) and one single address. See the planned diagram in [01-architecture.md](01-architecture.md).
+1. **CloudFront → Create distribution**, name `capston-rentalcar-website`, single website.
+2. Origin: **Amazon S3** → the bucket endpoint `capston-rentalcar.s3.us-east-1.amazonaws.com` (not the website endpoint). Keep **Allow private S3 bucket access to CloudFront** ticked (OAC).
+
+   ![CloudFront origin](images/07-cloudfront-origin.png)
+
+3. Security: **Do not enable** WAF (cost; planned for later).
+4. After creation: **General → Settings → Edit → Default root object** = `index.html`.
+5. Open `https://<distribution>.cloudfront.net`.
+
+   ![Website over HTTPS](images/07-website-https.png)
+
+**Clean-up after CloudFront works**
+
+- S3: switch off **Static website hosting**, remove the IP statement from the bucket policy (keep only the CloudFront statement: [bucket-policy.json](../infrastructure/bucket-policy.json)), switch **Block all public access** back on.
+- API Gateway → **CORS**: Allow-Origin = `https://<distribution>.cloudfront.net` only, Allow-Methods `GET`.
+
+> After uploading changed website files, create a CloudFront **invalidation** with `/*`, otherwise the old cached files are shown.
+
+## Step 8 – Cognito: sign-up and login
+
+1. **Cognito → Create user pool**: application type **Single-page application (SPA)**, sign-in with **Email**, self-registration **on**, required attribute `email`, return URL = CloudFront URL.
+2. **App clients → (client) → Login pages → Edit**: callback URL and sign-out URL = CloudFront URL, grant type **Authorization code**, scopes **OpenID** and **Email**.
+
+   ![Cognito app client](images/08-cognito-app-client.png)
+
+3. Put the Cognito domain and client ID into [`frontend/auth.js`](../frontend/auth.js), upload `auth.js` and `index.html` to S3, create an invalidation `/*`.
+4. The website now shows **Log in** and **Sign up**:
+
+   ![Login buttons](images/08-login-buttons.png)
+
+5. After sign-up (with email code) and login:
+
+   ![Logged in](images/08-logged-in.png)
+
+`auth.js` uses Cognito managed login with the **authorization code flow and PKCE**. The tokens stay in the browser session; the ID token will be sent to the booking API in the next phase.
+
+## Next – Booking
+
+Only logged-in customers can book. API Gateway will check the Cognito token (JWT authorizer) before the booking Lambda runs.

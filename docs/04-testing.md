@@ -36,3 +36,12 @@ Open the website, search for each city, try a car type filter, and check on a ph
 - **AWS:** **Lambda → Monitor → View CloudWatch logs** shows every search with time and duration.
 
 > 📸 Add screenshots: `images/04-network-tab.png`, `images/04-cloudwatch-logs.png`
+
+## 6. Login test (Cognito)
+
+1. Open the CloudFront URL, click **Sign up**, enter email and password, confirm the code from the email.
+2. After login the header shows **Hi, <email>** and **Log out**.
+3. Click **Log out**: the buttons change back to **Log in** and **Sign up**.
+4. Cognito → **Users**: the user is listed as confirmed.
+
+![Logged in](images/08-logged-in.png)

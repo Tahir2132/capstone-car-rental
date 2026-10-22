@@ -1,11 +1,13 @@
 {
   "Version": "2012-10-17",
   "Statement": [{
-    "Sid": "AllowReadFromMyIpOnly",
+    "Sid": "AllowCloudFrontServicePrincipal",
     "Effect": "Allow",
-    "Principal": "*",
+    "Principal": { "Service": "cloudfront.amazonaws.com" },
     "Action": "s3:GetObject",
     "Resource": "arn:aws:s3:::capston-rentalcar/*",
-    "Condition": { "IpAddress": { "aws:SourceIp": "YOUR-IP/32" } }
+    "Condition": {
+      "StringEquals": { "AWS:SourceArn": "arn:aws:cloudfront::ACCOUNT-ID:distribution/DISTRIBUTION-ID" }
+    }
   }]
 }
